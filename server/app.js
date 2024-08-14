@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 dotenv.config();
 
@@ -10,6 +11,9 @@ import authRouter from "./routes/authRouter.js";
 
 // parent router
 app.use("/api/v1/auth", authRouter);
+
+app.use(notFound);
+app.use(errorHandler);
 
 // server
 app.listen(port, () => {
