@@ -7,6 +7,11 @@ dotenv.config();
 
 const app = express();
 const port = 3000;
+
+// middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 import authRouter from "./routes/authRouter.js";
 
 // parent router

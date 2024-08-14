@@ -1,10 +1,20 @@
 import express from "express";
+import User from "../models/userModel.js";
+
 const router = express.Router();
 // child router
 
 // post /api/v1/auth/register
-router.post("/register", (req, res) => {
-  res.send("register");
+router.post("/register", async (req, res) => {
+  try {
+    await User.create({
+      name: req.body.name,
+    });
+  } catch (error) {
+    res.json({
+      error,
+    });
+  }
 });
 
 // post /api/v1/auth/login
