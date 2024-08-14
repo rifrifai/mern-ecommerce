@@ -17,6 +17,9 @@ app.listen(port, () => {
 });
 
 // conn
-mongoose.connect(process.env.DATABASE, {}).then(() => {
-  console.info("Database connected");
-});
+mongoose
+  .connect(process.env.DATABASE, {})
+  .then(() => {
+    console.info("Database connected");
+  })
+  .catch((err) => {});
