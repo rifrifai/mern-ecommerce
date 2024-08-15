@@ -9,7 +9,7 @@ export const errorHandler = (err, req, res, next) => {
 
   let message = err.message;
 
-  if ((err.name = "ValidationError")) {
+  if (err.name === "ValidationError") {
     message = Object.values(err.errors)
       .map((i) => i.message)
       .join(",");
