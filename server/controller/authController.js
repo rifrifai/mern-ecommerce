@@ -37,3 +37,18 @@ export const registerUser = asyncHandler(async (req, res) => {
 
   createSendResToken(createUser, 201, res);
 });
+
+export const loginUser = asyncHandler(async (req, res) => {
+  // 1- membuat validasi
+  if (!req.body.email || !req.body.password) {
+    res.status(400);
+    throw new Error("Please add email and password");
+  }
+
+  // 2- cek apakah email yang dimasukkan ada di db atau tidak
+  const userData = await User.findOne({
+    email: req.body.email,
+  });
+
+  // 3- cek password
+});
