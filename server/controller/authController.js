@@ -20,10 +20,9 @@ const createSendResToken = (user, statusCode, res) => {
 
   res.cookie("jwt", token, cookiesOption);
   user.password = undefined;
-  res.status(statusCode),
-    json({
-      data: user,
-    });
+  res.status(statusCode).json({
+    data: user,
+  });
 };
 
 export const registerUser = asyncHandler(async (req, res) => {

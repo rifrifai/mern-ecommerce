@@ -1,12 +1,11 @@
 import express from "express";
-import User from "../models/userModel.js";
-import asyncHandler from "../middleware/asyncHandler.js";
+import { registerUser } from "../controller/authController.js";
 
 const router = express.Router();
 // child router
 
 // post /api/v1/auth/register
-router.post("/register");
+router.post("/register", registerUser);
 
 // post /api/v1/auth/login
 router.post("/login", (req, res) => {
