@@ -1,6 +1,6 @@
 // mongoose => schema
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
+import bcrypt, { compare } from "bcryptjs";
 import validator from "validator";
 const { Schema } = mongoose;
 
@@ -35,6 +35,10 @@ userSchema.pre("save", async function () {
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
+
+userSchema.methods.comparePassword = async function (reqBody) {
+  return await bcrypt.compare(reqBody, this.password);
+};
 
 const User = mongoose.model("User", userSchema);
 export default User;
