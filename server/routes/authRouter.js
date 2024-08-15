@@ -1,21 +1,19 @@
 import express from "express";
 import User from "../models/userModel.js";
+import asyncHandler from "../middleware/asyncHandler.js";
 
 const router = express.Router();
 // child router
 
 // post /api/v1/auth/register
-router.post("/register", async (req, res) => {
-  try {
+router.post(
+  "/register",
+  asyncHandler(async (req, res) => {
     await User.create({
       name: req.body.name,
     });
-  } catch (error) {
-    res.json({
-      error,
-    });
-  }
-});
+  })
+);
 
 // post /api/v1/auth/login
 router.post("/login", (req, res) => {
