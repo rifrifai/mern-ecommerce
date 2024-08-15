@@ -6,14 +6,7 @@ const router = express.Router();
 // child router
 
 // post /api/v1/auth/register
-router.post(
-  "/register",
-  asyncHandler(async (req, res) => {
-    await User.create({
-      name: req.body.name,
-    });
-  })
-);
+router.post("/register");
 
 // post /api/v1/auth/login
 router.post("/login", (req, res) => {

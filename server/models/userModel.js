@@ -24,7 +24,7 @@ const userSchema = new Schema({
     required: [true, "Please add a password"],
     minLength: [6, "Password must be at least 6 characters"],
   },
-  role_id: {
+  role: {
     type: String,
     enum: ["user", "owner"],
     default: "user",
