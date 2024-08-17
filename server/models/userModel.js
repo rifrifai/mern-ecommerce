@@ -1,6 +1,6 @@
 // mongoose => schema
 import mongoose from "mongoose";
-import bcrypt, { compare } from "bcryptjs";
+import bcrypt from "bcryptjs";
 import validator from "validator";
 const { Schema } = mongoose;
 
