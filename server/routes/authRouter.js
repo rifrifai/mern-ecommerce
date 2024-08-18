@@ -1,5 +1,9 @@
 import express from "express";
-import { registerUser, loginUser } from "../controller/authController.js";
+import {
+  registerUser,
+  loginUser,
+  getCurrentUser,
+} from "../controller/authController.js";
 import { protectedMiddleware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
@@ -16,9 +20,7 @@ router.get("/logout", (req, res) => {
   res.send("logout");
 });
 
-// get /api/v1/auth/getUser
-router.get("/getuser", protectedMiddleware, (req, res) => {
-  res.send("get current user");
-});
+// get /api/v1/auth/getuser
+router.get("/getuser", protectedMiddleware, getCurrentUser);
 
 export default router;
