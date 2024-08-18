@@ -3,6 +3,7 @@ import {
   registerUser,
   loginUser,
   getCurrentUser,
+  logoutUser,
 } from "../controller/authController.js";
 import { protectedMiddleware } from "../middleware/authMiddleware.js";
 
@@ -16,9 +17,7 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 
 // get /api/v1/auth/logout
-router.get("/logout", (req, res) => {
-  res.send("logout");
-});
+router.get("/logout", protectedMiddleware, logoutUser);
 
 // get /api/v1/auth/getuser
 router.get("/getuser", protectedMiddleware, getCurrentUser);
