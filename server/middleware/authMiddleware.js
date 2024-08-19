@@ -22,7 +22,7 @@ export const protectedMiddleware = asyncHandler(async (req, res, next) => {
 });
 
 // middleware owner
-export const adminMiddleware = (req, res, next) => {
+export const ownerMiddleware = (req, res, next) => {
   if (req.user && req.user.role === "owner") {
     next();
   } else {
