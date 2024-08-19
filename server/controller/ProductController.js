@@ -22,6 +22,11 @@ export const AllProduct = asyncHandler(async (req, res) => {
 export const DetailProduct = asyncHandler(async (req, res) => {
   const detailProduct = await Product.findById(req.params.id);
 
+  if (!detailProduct) {
+    res.status(404);
+    throw new Error("Product Not Found");
+  }
+
   return res.status(200).json({
     message: "Get Detail Product Success",
     data: detailProduct,
