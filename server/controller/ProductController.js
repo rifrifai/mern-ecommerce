@@ -11,11 +11,21 @@ export const CreateProduct = asyncHandler(async (req, res) => {
 });
 
 export const AllProduct = asyncHandler(async (req, res) => {
-  res.send("All Product");
+  const allProduct = await Product.find();
+
+  return res.status(200).json({
+    message: "Get All Product Success",
+    data: allProduct,
+  });
 });
 
 export const DetailProduct = asyncHandler(async (req, res) => {
-  res.send("Detail Product");
+  const detailProduct = await Product.findById(req.params.id);
+
+  return res.status(200).json({
+    message: "Get Detail Product Success",
+    data: detailProduct,
+  });
 });
 
 export const UpdateProduct = asyncHandler(async (req, res) => {
