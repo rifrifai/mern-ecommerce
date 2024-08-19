@@ -34,11 +34,34 @@ export const DetailProduct = asyncHandler(async (req, res) => {
 });
 
 export const UpdateProduct = asyncHandler(async (req, res) => {
-  res.send("Update Product");
+  const updateProduct = await Product.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { runValidators: false, new: true }
+  );
+
+  if (!updateProduct) {
+    res.status(404);
+    throw new Error("Product Not Found");
+  }
+
+  return res.status(201).json({
+    message: "Update Product Success",
+    data: updateProduct,
+  });
 });
 
 export const DeleteProduct = asyncHandler(async (req, res) => {
-  res.send("Delete Product");
+  const deleteProduct = await Product.findByIdAndDelete(req.params.id);
+
+  if (!deleteProduct) {
+    res.status(404);
+    throw new Error("Product Not Found");
+  }
+
+  return res.status(200).json({
+    message: "Delete Product Success",
+  });
 });
 
 export const FileUpload = asyncHandler(async (req, res) => {
