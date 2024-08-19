@@ -32,7 +32,7 @@ router.put("/:id", UpdateProduct);
 // Delete data product
 // delete /api/v1/product/:id
 // middleware owner
-router.delete("/id", DeleteProduct);
+router.delete("/:id", DeleteProduct);
 
 // File Upload
 // post /api/v1/product/file-upload
