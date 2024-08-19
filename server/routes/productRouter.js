@@ -7,7 +7,7 @@ import {
   UpdateProduct,
   DeleteProduct,
   FileUpload,
-} from "../controller/ProductRouter.js";
+} from "../controller/ProductController.js";
 
 const router = express.Router();
 // CRUD product
