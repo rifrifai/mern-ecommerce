@@ -21,6 +21,11 @@ export const AllProduct = asyncHandler(async (req, res) => {
   // filter product
   let query = Product.find(queryObj);
 
+  // pagination
+  const page = req.query.page * 1 || 1;
+  const limitData = req.query.limit * 1 || 30;
+  const skipData = (page - 1) * limitData;
+
   const data = await query;
 
   // const allProduct = await Product.find();
