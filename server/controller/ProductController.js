@@ -11,11 +11,24 @@ export const CreateProduct = asyncHandler(async (req, res) => {
 });
 
 export const AllProduct = asyncHandler(async (req, res) => {
-  const allProduct = await Product.find();
+  // Req Query
+  const queryObj = { ...req.query };
+
+  // fungsi untuk mengabaikan jika ada req page dan limit
+  const excludeField = ["page", "limit"];
+  excludeField.forEach((i) => delete queryObj[i]);
+
+  // filter product
+  let query = Product.find(queryObj);
+
+  const data = await query;
+
+  // const allProduct = await Product.find();
 
   return res.status(200).json({
     message: "Get All Product Success",
-    data: allProduct,
+    data,
+    // data: allProduct,
   });
 });
 
