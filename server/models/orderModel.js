@@ -1,11 +1,27 @@
 // mongoose => schema
 import mongoose from "mongoose";
 const { Schema } = mongoose;
+const singleProduct = Schema({
+  name: { type: String, required: true },
+  quantity: { type: Number, required: true },
+  price: { type: Number, required: true },
+  product: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Product",
+    required: true,
+  },
+});
 
 const orderSchema = new Schema({
   total: {
     type: Number,
     required: [true, "Please add a total price"],
+  },
+  itemsDetail: [singleProduct],
+  user: {
+    type: Schema.ObjectId,
+    ref: "User",
+    required: true,
   },
   status: {
     type: String,
