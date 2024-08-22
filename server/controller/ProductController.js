@@ -22,6 +22,8 @@ export const AllProduct = asyncHandler(async (req, res) => {
   let query = Product.find(queryObj);
 
   // pagination
+  // page untuk data yang ditampilkan
+  // limit untuk data maksimum yang ditampilkan
   const page = req.query.page * 1 || 1;
   const limitData = req.query.limit * 1 || 30;
   const skipData = (page - 1) * limitData;
