@@ -2,13 +2,13 @@ import express from "express";
 import {
   protectedMiddleware,
   ownerMiddleware,
-} from "../middleware/authMiddleware";
+} from "../middleware/authMiddleware.js";
 import {
   CreateOrder,
   AllOrder,
   DetailOrder,
   CurrentUserOrder,
-} from "../controller/OrderController";
+} from "../controller/OrderController.js";
 
 const router = express.Router();
 
@@ -24,8 +24,8 @@ router.get("/", protectedMiddleware, ownerMiddleware, AllOrder);
 // owner auth only
 router.get("/:id", protectedMiddleware, ownerMiddleware, DetailOrder);
 
-// get /api/v1/order/current-user
+// get /api/v1/order/current/user
 // user auth only
-router.get("/current-user", protectedMiddleware, CurrentUserOrder);
+router.get("/current/user", protectedMiddleware, CurrentUserOrder);
 
 export default router;
