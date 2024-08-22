@@ -18,8 +18,16 @@ export const AllProduct = asyncHandler(async (req, res) => {
   const excludeField = ["page", "limit"];
   excludeField.forEach((i) => delete queryObj[i]);
 
-  // filter product
-  let query = Product.find(queryObj);
+  let query;
+  if (req.query.name) {
+    // fitur searching product
+    query = Product.find({
+      name: { $regex: req.query.name, $option: "i" },
+    });
+  } else {
+    // filter product
+    let query = Product.find(queryObj);
+  }
 
   // pagination
   // page untuk data yang ditampilkan
