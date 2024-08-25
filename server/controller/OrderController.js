@@ -5,7 +5,7 @@ import Product from "../models/productModel.js";
 export const CreateOrder = asyncHandler(async (req, res) => {
   const { firstName, lastName, email, phone, cartItem } = req.body;
 
-  if (!cartItem || cartItem.length > 0) {
+  if (!cartItem || cartItem.length < 1) {
     res.status(400);
     throw new Error("Cart is empty");
   }
@@ -19,10 +19,21 @@ export const CreateOrder = asyncHandler(async (req, res) => {
       res.status(404);
       throw new Error("ID Product Not Found");
     }
-    orderItem = [...orderItem, productData];
+
+    const { name, price, _id } = productData;
+    const singleProduct = {
+      quantity: cart.quantity,
+      name,
+      price,
+      product: _id,
+    };
+
+    orderItem = [...orderItem, singleProduct];
+    total += cart.quantity * price;
   }
 
   res.status(201).json({
+    total,
     orderItem,
     message: "Create Order Success",
   });
