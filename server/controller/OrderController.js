@@ -32,9 +32,19 @@ export const CreateOrder = asyncHandler(async (req, res) => {
     total += cart.quantity * price;
   }
 
+  const order = await Order.create({
+    itemsDetail: orderItem,
+    total,
+    firstName,
+    lastName,
+    email,
+    phone,
+    user: req.user.id,
+  });
+
   res.status(201).json({
     total,
-    orderItem,
+    order,
     message: "Create Order Success",
   });
 });
