@@ -13,7 +13,7 @@ export const protectedMiddleware = asyncHandler(async (req, res, next) => {
       next();
     } catch (error) {
       res.status(401);
-      throw new Error("Not Authorized, token failed");
+      throw new Error("Not Authorized, no token");
     }
   } else {
     res.status(401);

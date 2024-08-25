@@ -1,6 +1,6 @@
 import asyncHandler from "../middleware/asyncHandler.js";
-import Product from "../models/productModel.js";
 import Order from "../models/orderModel.js";
+import Product from "../models/productModel.js";
 
 export const CreateOrder = asyncHandler(async (req, res) => {
   const { firstName, lastName, email, phone, cartItem } = req.body;
@@ -11,7 +11,7 @@ export const CreateOrder = asyncHandler(async (req, res) => {
   }
 
   let orderItem = [];
-  let totalHarga = 0;
+  let total = 0;
 
   for (const cart of cartItem) {
     const productData = await Product.findOne({ _id: cart.product });
