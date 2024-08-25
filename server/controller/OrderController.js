@@ -50,13 +50,19 @@ export const CreateOrder = asyncHandler(async (req, res) => {
 });
 
 export const AllOrder = asyncHandler(async (req, res) => {
+  const orders = await Order.find();
+
   res.status(200).json({
+    data: orders,
     message: "Get All Order Success",
   });
 });
 
 export const DetailOrder = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+
   res.status(200).json({
+    data: order,
     message: "Get Detail Order Success",
   });
 });
