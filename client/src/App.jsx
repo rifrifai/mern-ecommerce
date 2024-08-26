@@ -14,7 +14,7 @@ import PublicLayout from "./layouts/PublicLayout";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: PublicLayout,
+    element: <PublicLayout />,
     children: [
       {
         index: true,
@@ -51,8 +51,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">I&apos;m Rifai</h1>
-      <button className="btn btn-primary">Primary</button>
+      <RouterProvider router={router} />
     </>
   );
 }
