@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import NavList from "./NavList";
 import { BsCart3 } from "react-icons/bs";
+import { FaBarsStaggered } from "react-icons/fa6";
 
 function Nav() {
   return (
@@ -13,6 +14,20 @@ function Nav() {
           >
             Logo
           </NavLink>
+          {/* Mobile */}
+          <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <FaBarsStaggered className="h-6 w-6" />
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+            >
+              <NavList />
+            </ul>
+          </div>
+
+          {/* PC */}
           <div className="hidden lg:flex">
             <ul className="menu menu-horizontal">
               <NavList />
@@ -20,6 +35,7 @@ function Nav() {
           </div>
         </div>
 
+        {/* Icon Keranjang */}
         <div className="navbar-end">
           <NavLink to="/cart" className="btn btn-ghost btn-circle btn-md">
             <div className="indicator">
