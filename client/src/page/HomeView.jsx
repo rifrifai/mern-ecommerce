@@ -3,6 +3,7 @@
 import axios from "axios";
 import customApi from "../api.js";
 import { useState, useEffect } from "react";
+import CartProduct from "../components/CartProduct.jsx";
 
 const HomeView = () => {
   const [products, setProducts] = useState([]);
@@ -17,15 +18,6 @@ const HomeView = () => {
     }
   };
 
-  // format harga rupiah
-  const priceFormat = (price) => {
-    const rupiah = new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-    }).format(price);
-    return rupiah;
-  };
-
   useEffect(() => {
     getProducts();
   }, []);
@@ -37,22 +29,7 @@ const HomeView = () => {
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
         {products.map((i) => (
-          <div
-            className="card bg-neutral text-neutral-content shadow-xl"
-            key={i._id}
-          >
-            <figure>
-              <img src={i.image} alt="Shoes" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{i.name}</h2>
-              <p className="font-bold text-primary">{priceFormat(i.price)}</p>
-              <p>{i.description.substring(0, 50)}</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
-              </div>
-            </div>
-          </div>
+          <CartProduct i={i} />
         ))}
       </div>
     </>
