@@ -5,6 +5,7 @@ export default function CartProduct({ i }) {
     const rupiah = new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
+      maximumFractionDigits: 0,
     }).format(price);
     return rupiah;
   };
