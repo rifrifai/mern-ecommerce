@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
+
 export default function CartProduct({ i }) {
   // format harga rupiah
   const priceFormat = (price) => {
@@ -24,7 +26,9 @@ export default function CartProduct({ i }) {
           <p className="font-bold text-primary">{priceFormat(i.price)}</p>
           <p>{i.description.substring(0, 50)}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <Link to={`/product/${i._id}`} className="btn btn-primary">
+              Buy Now
+            </Link>
           </div>
         </div>
       </div>
