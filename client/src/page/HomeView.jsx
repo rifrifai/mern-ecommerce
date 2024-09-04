@@ -1,26 +1,18 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
-import axios from "axios";
 import customApi from "../api.js";
-import { useState, useEffect } from "react";
 import CartProduct from "../components/CartProduct.jsx";
+import { useLoaderData } from "react-router-dom";
+
+const loader = async ({ request }) => {
+  const { data } = await customApi.get("/product");
+
+  const products = data.data;
+  return { products };
+};
 
 const HomeView = () => {
-  const [products, setProducts] = useState([]);
-
-  const getProducts = async () => {
-    try {
-      const { data } = await customApi.get("/product?limit=4");
-      setProducts(data.data);
-      console.log(data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
+  const { products } = useLoaderData();
 
   return (
     <>

@@ -7,11 +7,6 @@ export default function DetailProduct() {
   let { id } = useParams();
   const [product, setProduct] = useState("");
 
-  const productData = async () => {
-    const { data } = await customApi.get(`/product/${id}`);
-    setProduct(data.data);
-  };
-
   const formatPrice = (price) => {
     const rupiah = new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -20,9 +15,14 @@ export default function DetailProduct() {
     return rupiah;
   };
 
+  const productData = async () => {
+    const { data } = await customApi.get(`/product/${id}`);
+    setProduct(data.data);
+  };
+
   useEffect(() => {
     productData();
-  });
+  }, []);
 
   return (
     <section>
