@@ -15,14 +15,14 @@ export default function Hero() {
             Indonesia, you&apos;ve come to the right place. NurisTech is a the
             best place to learn something new.
           </p>
-        </div>
-        <div className="mt-10">
-          <Link to="/products" className="btn btn-primary capitalize">
-            our product
-          </Link>
+          <div className="mt-10">
+            <Link to="/products" className="btn btn-primary">
+              Our Products
+            </Link>
+          </div>
         </div>
 
-        <div className="hidden lg:carousel carousel-center bg-neutral rounded-box max-w-md space-x-4 p-4">
+        <div className="hidden lg:carousel carousel-center bg-neutral rounded-box space-x-4 p-4">
           {products.map((i) => (
             <div className="carousel-item" key={i._id}>
               <img

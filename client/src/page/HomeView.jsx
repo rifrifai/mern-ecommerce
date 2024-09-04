@@ -20,6 +20,7 @@ const HomeView = () => {
       <div>
         <Hero />
       </div>
+
       <div className="border-b border-primary pb-2 mt-5">
         <h2 className="text-2xl font-bold capitalize"> product list</h2>
       </div>
