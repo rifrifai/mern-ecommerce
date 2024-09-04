@@ -19,7 +19,7 @@ export default function CartProduct({ i }) {
         key={i._id}
       >
         <figure>
-          <img src={i.image} alt="Shoes" />
+          <img src={i.image} alt={i.name} />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{i.name}</h2>
