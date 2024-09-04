@@ -6,7 +6,7 @@ import { useLoaderData } from "react-router-dom";
 import Hero from "../components/Hero.jsx";
 
 export const loader = async ({ request }) => {
-  const { data } = await customApi.get("/product?limit=4");
+  const { data } = await customApi.get("/product?limit=3");
 
   const products = data.data;
   return { products };

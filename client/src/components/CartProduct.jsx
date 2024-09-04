@@ -19,7 +19,10 @@ export default function CartProduct({ i }) {
         key={i._id}
       >
         <figure>
-          <img src={i.image} alt={i.name} />
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
+            alt={i.name}
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{i.name}</h2>
