@@ -4,7 +4,7 @@ import customApi from "../api.js";
 import CartProduct from "../components/CartProduct.jsx";
 import { useLoaderData } from "react-router-dom";
 
-const loader = async ({ request }) => {
+export const loader = async ({ request }) => {
   const { data } = await customApi.get("/product");
 
   const products = data.data;
