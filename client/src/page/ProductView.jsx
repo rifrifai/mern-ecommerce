@@ -4,11 +4,19 @@ import Filter from "../components/Filter";
 import CartProduct from "../components/CartProduct";
 
 export const loader = async ({ request }) => {
-  const { data } = await customApi.get("/product");
+  // filter search product
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
 
-  console.info(request);
+  const { data } = await customApi.get("/product", { params });
+
+  console.info(params);
   const products = data.data;
-  return { products };
+  console.info(products);
+
+  // default value params
+  return { products, params };
 };
 const ProductView = () => {
   const { products } = useLoaderData();
@@ -17,9 +25,11 @@ const ProductView = () => {
     <>
       <Filter />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-5">
-        {products.map((i) => (
-          <CartProduct key={i._id} i={i} />
-        ))}
+        {!products.length ? (
+          <h1 className="text-3xl font-bold mt-5">There is no product</h1>
+        ) : (
+          products.map((i) => <CartProduct key={i._id} i={i} />)
+        )}
       </div>
     </>
   );
