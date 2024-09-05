@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import customApi from "../api";
+import Filter from "../components/Filter";
 
 export const loader = async ({ request }) => {
   const { data } = await customApi.get("/product");
@@ -12,7 +13,11 @@ const ProductView = () => {
   const { products } = useLoaderData();
   console.log(products);
 
-  return <div>ProductView</div>;
+  return (
+    <>
+      <Filter />
+    </>
+  );
 };
 
 export default ProductView;
